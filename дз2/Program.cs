@@ -155,6 +155,27 @@ namespace hm2
 
             #endregion
 
+            Console.Write("\n\nпрограмма подсчета количества «Хороших» чисел в диапазоне от 1 до 1 000 000 000. Хорошим называется число, которое делится на сумму своих цифр.\n");
+
+            #region Зад.6
+
+            int countGoodNum = 0;
+            DateTime start = DateTime.Now;
+
+            for (int i = 1; i <= 1000000000; i++)
+            {
+
+                if (GoodNumber(i))
+                {
+                    countGoodNum++;
+                }
+            }
+            DateTime finish = DateTime.Now;
+            Console.Write(countGoodNum + "\n");
+            Console.WriteLine("Время выполнения подсчета хороших чисел: " + (finish - start));
+
+            #endregion
+
             Console.Write("\n\nрекурсивный метод, который выводит на экран числа от a до b и их сумму(a<b).\n");
 
             #region Зад. 7(а, б)
@@ -174,6 +195,26 @@ namespace hm2
 
             Console.ReadKey();
 
+        }
+
+        private static bool GoodNumber(int i)
+        {
+            int tempI = i;
+            int sumGN = 0;
+
+            while (i >= 1)
+            {
+                sumGN = sumGN + i % 10;
+                i = i / 10;
+            }
+            if (tempI % sumGN == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private static float WeightCheck(string userGender, float userWeight, float userHight)
